@@ -1,0 +1,22 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hellok8s-recreate
+spec:
+  replicas: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: hellok8s-recreate
+  template:
+    metadata:
+      labels:
+        app: hellok8s-recreate
+    spec:
+      containers:
+        - name: hellok8s-container
+          image: brianstorti/hellok8s:v2
+          ports:
+            - containerPort: 4567
